@@ -1,0 +1,7 @@
+Lectures:
+Stanford CS330: Multi-Task and Meta-Learning, 2019: https://www.youtube.com/watch?v=0rZtSwNOTQo&list=PLoROMvodv4rMC6zfYmnD7UG3LVvwaITY5
+Stanford CS234: Reinforcement Learning | Winter 2019: https://www.youtube.com/watch?v=FgzM3zpZ55o&list=PLoROMvodv4rOSOPzutgyCTapiGlY2Nd8u&index=2&t=0s
+Stanford CS229: Machine Learning (Autumn 2018): https://www.youtube.com/watch?v=jGwO_UgTS7I&list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU
+Stanford CS224U: Natural Language Understanding | Spring 2019: https://www.youtube.com/watch?v=tZ_Jrc_nRJY&list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20
+Stanford CS221: AI (Autumn 2019): https://www.youtube.com/watch?v=J8Eh7RqggsU&list=PLoROMvodv4rO1NB9TD4iUZ3qghGEGtqNX
+
