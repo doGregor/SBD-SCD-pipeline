@@ -26,4 +26,14 @@ Contains a report of results that are achieved by fine-tuning the bert-base-unca
 `sentence_boundary_detection/daily_dialogue/data`
 Raw data that was used and csv files (train/dev/test)
 
+`sentence_boundary_detection/daily_dialogue/results_huggingface_bert_base`
+Contains a report of results that are achieved by fine-tuning the bert-base-uncased model, the original test data and the predicted test data.
+
+### Model: bert-base-uncased, Data: mix of Stanford lecture data and daily dialogue data (https://www.aclweb.org/anthology/I17-1099/) -> details on data preprocessing can be found in `sentence_boundary_detection/mixed_data/results_huggingface_bert_base/general_information_data.pdf`
+`sentence_boundary_detection/mixed_data/data`
+Csv files (train/dev/test)
+
+`sentence_boundary_detection/mixed_data/results_huggingface_bert_base`
+Contains a report of results that are achieved by fine-tuning the bert-base-uncased model, information about the data, the original test data and the predicted test data.
+
 ## Speaker Identification
