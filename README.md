@@ -3,8 +3,8 @@
  
 ## Sentence Boundary Detection
 ### Model: bert-base-uncased, Data: Stanford lecture data
-`sentence_boundary_detection/data`
-Data that was used (train/dev/test):
+`sentence_boundary_detection/lecture_data/data`
+Raw data that was used and preprocessed csv files (train/dev/test):
 
 Lecture|Source
 -------|------
@@ -16,10 +16,14 @@ Stanford CS229: Machine Learning (Autumn 2018)|https://www.youtube.com/playlist?
 Stanford CS224U: Natural Language Understanding (Spring 2019)|https://www.youtube.com/playlist?list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20
 Stanford CS221: AI Principles and Techniques (Autumn 2019)|https://www.youtube.com/playlist?list=PLoROMvodv4rO1NB9TD4iUZ3qghGEGtqNX
 
-`sentence_boundary_detection/data_processing`
+`sentence_boundary_detection/lecture_data/data_processing`
 Contains a script that transforms the raw text files to train/dev/test data in CoNLL-2003 format (Tjong Kim Sang & De Meulder, 2003).
 
-`sentence_boundary_detection/huggingface_bert_base_2020_06_08`
+`sentence_boundary_detection/lecture_data/huggingface_bert_base_2020_06_08`
 Contains a report of results that are achieved by fine-tuning the bert-base-uncased model, the original test data and the predicted test data.
+
+### Model: bert-base-uncased, Data: Daily dialogue (https://www.aclweb.org/anthology/I17-1099/)
+`sentence_boundary_detection/daily_dialogue/data`
+Raw data that was used and csv files (train/dev/test)
 
 ## Speaker Identification
