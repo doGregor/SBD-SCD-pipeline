@@ -1,2 +1,5 @@
 __pycache__/
 .DS_Store
+
+# not adding model because of size
+bert_sbd_model/
