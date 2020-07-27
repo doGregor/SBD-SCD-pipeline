@@ -25,7 +25,7 @@ if __name__ == '__main__':
         tokens = get_tokenized_data(path_of_current_file)
 
         predicted_list = sbd_detector.predict_sentence_boundaries(tokens=tokens)
-        for prediction in predicted_list:
-            print(prediction)
+
+        print(predicted_list)
 
 # TODO: remove ' from input text and refactor output
