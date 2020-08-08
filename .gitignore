@@ -1,5 +1,6 @@
 __pycache__/
 .DS_Store
 
-# not adding model because of size
+# not adding models because of size
 bert_sbd_model/
+bert_sc_model/
