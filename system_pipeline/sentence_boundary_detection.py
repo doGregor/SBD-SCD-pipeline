@@ -15,7 +15,7 @@ class SBDDetector:
         self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path=CONFIG["sbd_model"],
                                                        cache_dir=CONFIG["cache"])
 
-    def identify_sentences(self, labeled_output_tuples):
+    def align_sentences(self, labeled_output_tuples):
         identified_sentences = []
         single_sentence = []
         for idx, prediction in enumerate(labeled_output_tuples):
@@ -32,6 +32,7 @@ class SBDDetector:
         return identified_sentences
 
     def predict_sentence_boundaries(self, tokens):
+        print("[INFO] Predicting and aligning sentence boundaries")
         inputs = self.tokenizer.encode(tokens, return_tensors="pt")
         outputs = self.model(inputs)[0]
         predictions = torch.argmax(outputs, dim=2)
@@ -40,4 +41,4 @@ class SBDDetector:
         for token, prediction in zip(tokens, predictions[0].tolist()[1:-1]):
             labeled_output.append((token, self.label_list[prediction]))
 
-        return self.identify_sentences(labeled_output)
+        return self.align_sentences(labeled_output)

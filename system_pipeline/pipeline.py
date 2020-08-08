@@ -1,6 +1,7 @@
 import os
-from text_processing_functionality import get_tokenized_data
+from text_processing_functionality import get_tokenized_data, get_predictions_as_sentences
 from sentence_boundary_detection import SBDDetector
+from speaker_change_detection import SCDetector
 
 
 CONFIG = {
@@ -17,15 +18,17 @@ CONFIG = {
 if __name__ == '__main__':
 
     sbd_detector = SBDDetector()
+    sc_detector = SCDetector()
 
     for file in os.listdir(CONFIG['input']):
-        print("Processing following file:", file)
+        print("[INFO] Processing following file:", file)
         path_of_current_file = CONFIG['input'] + "/" + str(file)
 
         tokens = get_tokenized_data(path_of_current_file)
 
-        predicted_list = sbd_detector.predict_sentence_boundaries(tokens=tokens)
+        predicted_sentences = sbd_detector.predict_sentence_boundaries(tokens=tokens)
 
-        print(predicted_list)
+        tokens_with_sc_labels = sc_detector.predict_speakers(predicted_sentences)
 
-# TODO: remove ' from input text and refactor output
+        output = get_predictions_as_sentences(tokens_with_sc_labels)
+        print(output)
