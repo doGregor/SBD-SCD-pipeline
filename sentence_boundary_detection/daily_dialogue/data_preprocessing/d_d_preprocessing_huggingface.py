@@ -17,16 +17,12 @@ NUMBERS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 def convert_to_df_with_pos_tags(token_list):
     df = pd.DataFrame({'token': token_list})
-    print("token column initialized")
     df["pos"] = "O"
-    print("O tag added")
     mask_1 = (df['token'] == ".")
-    print("mask created")
     df["pos"][mask_1] = ""
     df["token"][mask_1] = ""
     mask_1.drop(mask_1.tail(1).index, inplace=True)
     df["pos"][np.flatnonzero(mask_1)+1] = "BOS"
-    print("mask applied")
     df["pos"][0] = "BOS"
     return df
 
@@ -53,57 +49,42 @@ def save_txt(data, path=config["path_to_save"], filename=config["file_name_to_sa
 
 
 def get_cleaned_data(f_path):
-    print("reading df")
     df = pd.read_csv(f_path)
-    print("dropping NA")
     df = df.dropna()
-    print("creating sentences")
     sentences = []
     for g, df_p in df.groupby(np.arange(df.shape[0]) // config["sequence_length"]):
         if len(df_p["pos"].tolist()) is config["sequence_length"]:
             df_p = df_p.append(pd.Series(), ignore_index=True)
             sentences.append(df_p)
-    print("sentences created")
     print("number of samples: ", len(sentences))
     return sentences
 
 
-def return_tokeized_lecture_data():
+def return_tokenized_lecture_data():
 
     for file in os.listdir(config["path_to_data"]):
-        tokens = []
         print("current file: ", file)
+        tokens = []
         curr_path = config["path_to_data"] + "/" + file
         f = open(curr_path, "r")
         file_data = f.read()
-        file_data = file_data.replace("-", " ")
 
         file_data = file_data.lower()
         file_data = re.sub("[\(\[].*?[\)\]]", "", file_data)
         file_data = file_data.replace("__eou__", "")
-        file_data = file_data.rstrip()
         file_data = file_data.splitlines()
-        file_data = ' '.join(file_data).replace("  ", " ")
+        file_data = ' '.join(file_data)
+        file_data = file_data.rstrip()
 
         tokenized_data = nltk.word_tokenize(file_data)
         for idx, token in enumerate(tokenized_data):
 
-            token = token.replace("`", "")
-            token = token.replace("´", "")
-            token = token.replace("’", "")
-            token = token.replace("'", "")
+            token = re.sub("['…`´’-]", "", token)
 
             if len(token) is 2 and token[-1] is ".":
                 tokens.append(token[0])
                 tokens.append(".")
                 continue
-            '''
-            if len(token) > 1 and token[0] in NUMBERS and token[-1] is ".":
-                tokens.append(token[:-1])
-                tokens.append(".")
-                continue
-            '''
-
             if token == "." or token == "!" or token == "?":
                 tokens.append(".")
             else:
@@ -136,4 +117,4 @@ def return_tokeized_lecture_data():
 
 
 if __name__ == '__main__':
-    return_tokeized_lecture_data()
+    return_tokenized_lecture_data()
