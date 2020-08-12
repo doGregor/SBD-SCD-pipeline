@@ -1,5 +1,8 @@
 # project_module_ss_2020
- Sentence Boundary Detection and Speaker Identification
+ Sentence Boundary Detection and Speaker Change Detection
+ 
+### How to run the pipeline
+1. Install dependencies: Navigate to the projects root directory and run `pip install -r requirements.txt`
  
 ## Sentence Boundary Detection
 ### Model: bert-base-uncased, Data: Stanford lecture data
