@@ -1,3 +1,7 @@
+"""
+This module contains functionality to detect speaker changes from text.
+"""
+
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 import torch
 import itertools
@@ -17,6 +21,12 @@ class SCDetector():
                                                        cache_dir=CONFIG["cache"])
 
     def align_sentences_with_sc_tags(self, labeled_output_tuples):
+        """
+        Aligns predicted speaker change labels with sentences.
+        :param labeled_output_tuples: list of POS-tagged tuples
+        :return: list of tuples where tuple[0] is list of sentence tokens and
+                 tuple[1] is boolean speaker change label
+        """
         sentence_list = []
         sentence = []
         sc_label = True
@@ -35,6 +45,13 @@ class SCDetector():
         return sentence_list
 
     def predict_speakers(self, sentence_list):
+        """
+        Performs POS-tagging to predict speaker changes.
+        :param sentence_list: list of lists where each list contains tokens of a single sentence
+                 with dot for detected sentence boundaries
+        :return: returns list of tuples where tuple[0] is list of tokens of a single sentence
+                 and tuple[1] is speaker change label
+        """
         print("[INFO] Predicting and aligning speaker change information")
         sentence_list = list(itertools.chain.from_iterable(sentence_list))
         inputs = self.tokenizer.encode(sentence_list, return_tensors="pt")

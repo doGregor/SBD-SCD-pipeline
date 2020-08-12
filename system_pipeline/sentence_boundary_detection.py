@@ -1,3 +1,7 @@
+"""
+This module contains functionality to detect sentence boundaries from unpunctuated text.
+"""
+
 from transformers import AutoTokenizer, AutoModelForTokenClassification
 import torch
 
@@ -16,6 +20,12 @@ class SBDDetector:
                                                        cache_dir=CONFIG["cache"])
 
     def align_sentences(self, labeled_output_tuples):
+        """
+        Aligns predicted sentence boundaries with input tokens.
+        :param labeled_output_tuples: list of POS-tagged tuples
+        :return: list of lists where each list contains tokens of a single sentence
+                 with dot for detected sentence boundaries
+        """
         identified_sentences = []
         single_sentence = []
         for idx, prediction in enumerate(labeled_output_tuples):
@@ -32,6 +42,12 @@ class SBDDetector:
         return identified_sentences
 
     def predict_sentence_boundaries(self, tokens):
+        """
+        Performs POS-tagging by using BERT SBD-model to predict sentence boundaries.
+        :param tokens: list of tokens
+        :return: list of lists where each list contains tokens of a single sentence
+                 with dot for detected sentence boundaries
+        """
         print("[INFO] Predicting and aligning sentence boundaries")
         inputs = self.tokenizer.encode(tokens, return_tensors="pt")
         outputs = self.model(inputs)[0]
