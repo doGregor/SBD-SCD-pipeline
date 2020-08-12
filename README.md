@@ -1,8 +1,13 @@
-# project_module_ss_2020
+# Project Module Information Science SS2020
  Sentence Boundary Detection and Speaker Change Detection
  
 ### How to run the pipeline
 1. Install dependencies: Navigate to the projects root directory and run `pip install -r requirements.txt`
+2. Download BERT models `bert_sbd_model` and `bert_sc_model` from --LINK-- (because of size) and move them
+    in `system_pipeline` folder
+3. Place the file that should be processed as `.txt`-file in the `system_pipeline/input_dir` folder and run
+    `python3 pipeline.py`. The output is saved as txt-file in `system_pipeline/output_dir`. Note: you can also
+    process multiple files
  
 ## Sentence Boundary Detection
 ### Model: bert-base-uncased, Data: Stanford lecture data
@@ -25,18 +30,19 @@ Contains a script that transforms the raw text files to train/dev/test data in C
 `sentence_boundary_detection/lecture_data/huggingface_bert_base_2020_06_08`
 Contains a report of results that are achieved by fine-tuning the bert-base-uncased model, the original test data and the predicted test data.
 
-### Model: bert-base-uncased, Data: Daily dialogue (https://www.aclweb.org/anthology/I17-1099/)
+### Model: bert-base-uncased, Data: daily dialogue (https://www.aclweb.org/anthology/I17-1099/)
 `sentence_boundary_detection/daily_dialogue/data`
 Raw data that was used and csv files (train/dev/test)
 
 `sentence_boundary_detection/daily_dialogue/results_huggingface_bert_base`
 Contains a report of results that are achieved by fine-tuning the bert-base-uncased model, the original test data and the predicted test data.
 
-### Model: bert-base-uncased, Data: mix of Stanford lecture data and daily dialogue data (https://www.aclweb.org/anthology/I17-1099/) -> details on data preprocessing can be found in `sentence_boundary_detection/mixed_data/results_huggingface_bert_base/general_information_data.pdf`
+### Model: bert-base-uncased, Data: mix of Stanford lecture data and daily dialogue data
+#### details on data preprocessing can be found in `sentence_boundary_detection/mixed_data/results_huggingface_bert_base/general_information_data.pdf`
 `sentence_boundary_detection/mixed_data/data`
 Csv files (train/dev/test)
 
 `sentence_boundary_detection/mixed_data/results_huggingface_bert_base`
 Contains a report of results that are achieved by fine-tuning the bert-base-uncased model, information about the data, the original test data and the predicted test data.
 
-## Speaker Identification
+## Speaker Change Detection
