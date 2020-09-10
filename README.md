@@ -50,6 +50,7 @@ Contains a report of results that are achieved by fine-tuning the bert-base-unca
 
 ## How to rerun the training:
 Details: https://github.com/huggingface/transformers/tree/master/examples/token-classification
+
 What you need (at least):
 - config file (.json)
 - folder with 3 data files (.txt); have to be named train.txt, dev.txt, test.txt
@@ -58,3 +59,4 @@ What you need (at least):
 - empty output folder
 
 More details, like maximum sequence length and batch size are set within config file. If all required components are available run `python3 run_ner.py config.json`
+All utilized datasets as well as the associated configs are available within the repository.
