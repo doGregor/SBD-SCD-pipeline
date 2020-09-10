@@ -10,10 +10,10 @@
     process multiple files
  
 ## Sentence Boundary Detection
-### Model: bert-base-uncased, Data: Stanford lecture data
-`sentence_boundary_detection/lecture_data/data`
-Raw data that was used and preprocessed csv files (train/dev/test):
+`sentence_boundary_detection/lecture_data/`
+For this sepcific dataset: utilized data, optional data preprocessing, detailed evaluation results, config for model training.
 
+Raw data originates from:
 Lecture|Source
 -------|------
 Stanford CS224N: Natural Language Processing with Deep Learning (Winter 2019)|https://www.youtube.com/playlist?list=PLoROMvodv4rOhcuXMZkNm7j3fVwBBY42z
@@ -24,25 +24,43 @@ Stanford CS229: Machine Learning (Autumn 2018)|https://www.youtube.com/playlist?
 Stanford CS224U: Natural Language Understanding (Spring 2019)|https://www.youtube.com/playlist?list=PLoROMvodv4rObpMCir6rNNUlFAn56Js20
 Stanford CS221: AI Principles and Techniques (Autumn 2019)|https://www.youtube.com/playlist?list=PLoROMvodv4rO1NB9TD4iUZ3qghGEGtqNX
 
-`sentence_boundary_detection/lecture_data/data_processing`
-Contains a script that transforms the raw text files to train/dev/test data in CoNLL-2003 format (Tjong Kim Sang & De Meulder, 2003).
+`sentence_boundary_detection/daily_dialogue/`
+For this sepcific dataset: utilized data, optional data preprocessing, detailed evaluation results, config for model training.
+Data originates from https://www.aclweb.org/anthology/I17-1099/
 
-`sentence_boundary_detection/lecture_data/huggingface_bert_base_2020_06_08`
-Contains a report of results that are achieved by fine-tuning the bert-base-uncased model, the original test data and the predicted test data.
+`sentence_boundary_detection/mixed_data/`
+For this sepcific dataset: utilized data, optional data preprocessing, detailed evaluation results, config for model training.
 
-### Model: bert-base-uncased, Data: daily dialogue (https://www.aclweb.org/anthology/I17-1099/)
-`sentence_boundary_detection/daily_dialogue/data`
-Raw data that was used and csv files (train/dev/test)
+`sentence_boundary_detection/evaluation/`
+Script to evaluate predictions in CoNLL-2003 format.
 
-`sentence_boundary_detection/daily_dialogue/results_huggingface_bert_base`
-Contains a report of results that are achieved by fine-tuning the bert-base-uncased model, the original test data and the predicted test data.
-
-### Model: bert-base-uncased, Data: mix of Stanford lecture data and daily dialogue data
-#### details on data preprocessing can be found in `sentence_boundary_detection/mixed_data/results_huggingface_bert_base/general_information_data.pdf`
-`sentence_boundary_detection/mixed_data/data`
-Csv files (train/dev/test)
-
-`sentence_boundary_detection/mixed_data/results_huggingface_bert_base`
-Contains a report of results that are achieved by fine-tuning the bert-base-uncased model, information about the data, the original test data and the predicted test data.
+`sentence_boundary_detection/training/`
+Scripts that are necessary to train a model with a given config and given data (for details see bottom of the page)
 
 ## Speaker Change Detection
+`speaker_change_detection/original_data/`
+Results and preprocessing scripts for original data
+
+`speaker_change_detection/unpunctuated_data/`
+Results and preprocessing scripts for unpunctuated data
+
+`speaker_change_detection/evaluate/`
+Scripts to evaluate the resulting .txt files in CoNLL-2003 format.
+
+Since the data used for SCD is too extensive you have to run our python scripts by yourself, to generate the train/dev/test files:
+- download the data from Meng et al. (2017) and run their scripts as explained (https://sites.google.com/site/textscd/)
+- run the `preprocessing_data.py` (for unpunctuated data) or `preprocessing_original_data.py` (for original data) (Note: you have to specify your folderlocation within the script)
+- run the `data_to_pos.py` file (Note: you have to specify your folder location within the script)
+
+## How to rerun the training:
+Details: https://github.com/huggingface/transformers/tree/master/examples/token-classification
+
+What you need (at least):
+- config file (.json)
+- folder with 3 data files (.txt); have to be named train.txt, dev.txt, test.txt
+- `run_ner.py` and `utils_ner.py` files
+- file with your labels (.txt)
+- empty output folder
+
+More details, like utilized model, maximum sequence length or batch size are set within config file. If all required components are available run `python3 run_ner.py config.json`
+All utilized datasets as well as the associated configs are available within the repository.
