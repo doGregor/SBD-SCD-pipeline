@@ -1,0 +1,16 @@
+{
+    "data_dir": "./data_dd",
+    "labels": "labels.txt",
+    "model_name_or_path": "bert-base-uncased",
+    "output_dir": "./output_dd_test",
+    "logging_dir": "./logging_dir_dd",
+    "max_seq_length": 128,
+    "num_train_epochs": 3,
+    "per_device_train_batch_size": 16,
+    "save_steps": 1000,
+    "seed": 1,
+    "n_gpu": 2,
+    "do_train": true,
+    "do_eval": true,
+    "do_predict": true
+}
