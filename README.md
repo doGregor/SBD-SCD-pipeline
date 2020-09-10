@@ -46,3 +46,15 @@ Csv files (train/dev/test)
 Contains a report of results that are achieved by fine-tuning the bert-base-uncased model, information about the data, the original test data and the predicted test data.
 
 ## Speaker Change Detection
+
+
+## How to rerun the training:
+Details: https://github.com/huggingface/transformers/tree/master/examples/token-classification
+What you need (at least):
+- config file (.json)
+- folder with 3 data files (.txt); have to be named train.txt, dev.txt, test.txt
+- run_ner.py and utils_ner.py files
+- file with your labels (.txt)
+- empty output folder
+
+More details, like maximum sequence length and batch size are set within config file. If all required components are available run `python3 run_ner.py config.json`
