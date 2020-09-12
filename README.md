@@ -1,4 +1,4 @@
-# Project Module Information Science SS2020
+# Project Information Science 2020
  Sentence Boundary Detection and Speaker Change Detection
  
 ### How to run the pipeline
