@@ -1,6 +1,6 @@
 import os
 from text_processing_functionality import get_tokenized_data
-from sentence_boundary_detection import SBDDetector
+from sentence_boundary_detection import SBDetector
 
 '''
 CONFIG = {
@@ -23,7 +23,7 @@ if __name__ == '__main__':
         nlp = pipeline('ner', model=self.model, tokenizer=self.tokenizer, grouped_entities=False)
         return nlp(tokens)
 
-    sbd_detector = SBDDetector()
+    sbd_detector = SBDetector()
 
     for file in os.listdir(CONFIG['input']):
         print("[INFO] Processing following file:", file)

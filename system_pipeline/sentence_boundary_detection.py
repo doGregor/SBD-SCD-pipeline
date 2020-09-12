@@ -11,7 +11,7 @@ CONFIG = {
 }
 
 
-class SBDDetector:
+class SBDetector:
     def __init__(self):
         self.label_list = ["BOS", "0"]
         self.model = AutoModelForTokenClassification.from_pretrained(pretrained_model_name_or_path=CONFIG["sbd_model"],

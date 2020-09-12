@@ -52,7 +52,11 @@ def get_predictions_as_sentences(predictions):
             if (token == "s" or token == "t" or token == "re" or token == "m" or
                     token == "d" or token == "ll" or token == "ve"):
                 del single_sentence[-1]
-                new_token = tokens[idx - 1] + token
+                new_token = tokens[idx - 1] + "'" + token
+                single_sentence.append(new_token)
+            elif token == "nt":
+                del single_sentence[-1]
+                new_token = tokens[idx - 1] + "n't"
                 single_sentence.append(new_token)
             else:
                 single_sentence.append(token)

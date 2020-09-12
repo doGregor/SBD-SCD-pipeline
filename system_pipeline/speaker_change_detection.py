@@ -53,13 +53,54 @@ class SCDetector():
                  and tuple[1] is speaker change label
         """
         print("[INFO] Predicting and aligning speaker change information")
-        sentence_list = list(itertools.chain.from_iterable(sentence_list))
-        inputs = self.tokenizer.encode(sentence_list, return_tensors="pt")
-        outputs = self.model(inputs)[0]
-        predictions = torch.argmax(outputs, dim=2)
+        window_size = 7
+        if len(sentence_list) > window_size:
+            output_sequences = []
+            for idx in range(len(sentence_list)):
+                if (idx + window_size - 1) < len(sentence_list):
+                    current_sequence = list(itertools.chain.from_iterable(sentence_list[idx:idx + window_size]))
+                    inputs = self.tokenizer.encode(current_sequence, return_tensors="pt")
+                    outputs = self.model(inputs)[0]
+                    predictions = torch.argmax(outputs, dim=2)
 
-        labeled_output = []
-        for token, prediction in zip(sentence_list, predictions[0].tolist()[1:-1]):
-            labeled_output.append((token, self.label_list[prediction]))
+                    labeled_output = []
+                    for token, prediction in zip(current_sequence, predictions[0].tolist()[1:-1]):
+                        labeled_output.append((token, self.label_list[prediction]))
+                    output_sequences.append(labeled_output)
+
+            labeled_output = []
+            for idx, sample in enumerate(output_sequences):
+                if idx == 0:
+                    sentences = 0
+                    for idx_inner, pair in enumerate(sample):
+                        if idx_inner == 0 or sample[idx_inner - 1][0] == ".":
+                            sentences += 1
+                        if sentences < 5:
+                            labeled_output.append(pair)
+                            
+                elif idx == len(output_sequences)-1:
+                    sentences = 0
+                    for idx_inner, pair in enumerate(sample):
+                        if idx_inner == 0 or sample[idx_inner - 1][0] == ".":
+                            sentences += 1
+                        if sentences > 3:
+                            labeled_output.append(pair)
+                else:
+                    sentences = 0
+                    for idx_inner, pair in enumerate(sample):
+                        if idx_inner == 0 or sample[idx_inner - 1][0] == ".":
+                            sentences += 1
+                        if sentences == 4:
+                            labeled_output.append(pair)
+
+        else:
+            sentence_list = list(itertools.chain.from_iterable(sentence_list))
+            inputs = self.tokenizer.encode(sentence_list, return_tensors="pt")
+            outputs = self.model(inputs)[0]
+            predictions = torch.argmax(outputs, dim=2)
+
+            labeled_output = []
+            for token, prediction in zip(sentence_list, predictions[0].tolist()[1:-1]):
+                labeled_output.append((token, self.label_list[prediction]))
 
         return self.align_sentences_with_sc_tags(labeled_output)

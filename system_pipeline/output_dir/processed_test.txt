@@ -1,3 +1,3 @@
 ('and people have talked about strategic shrinkage that britain is no longer playing its place on the world stage in the way that it used to.', True)
-('theres going to be a referendum on whether we stay in the european union or not.', True)
-('and david miliband the former foreign secretary he said its almost like britain would be resigning from the world and no us government would be impressed by that.', True)
+("there's going to be a referendum on whether we stay in the european union or not.", True)
+("and david miliband the former foreign secretary he said it's almost like britain would be resigning from the world and no us government would be impressed by that.", False)
