@@ -1,12 +1,17 @@
-import os
+import numpy as np
 import nltk
 import itertools
-import numpy as np
+import os
 
-for file in os.listdir("./data"):
+# this script produces the train / test /dev files that are used for model training
+
+# specify folder location of the three files (train, test, val) that are produced
+# by running the 01_preprocess_original_data.py file
+FOLDER = "./data"
+for file in os.listdir(FOLDER):
     if file.endswith(".txt"):
         print("Current file:", file)
-        file_path = "./data/" + str(file)
+        file_path = FOLDER + str(file)
 
         current_file = open(file_path, "r")
 
@@ -45,13 +50,9 @@ for file in os.listdir("./data"):
                         tokens_element.append(new_token)
                     else:
                         tokens_element.append(token)
-                        if idx == 0:
-                            pos_tags_element.append("NSC")
-                        else:
-                            pos_tags_element.append("O")
-
-            if len(tokens_element) > 0 and (pos_tags_element[0] == "SC" or
-                                            pos_tags_element[0] == "NSC"):
+                        pos_tags_element.append("O")
+            # consistency check
+            if len(tokens_element) > 0:
                 tokens.append(tokens_element)
                 pos_tags.append(pos_tags_element)
             else:
@@ -62,18 +63,26 @@ for file in os.listdir("./data"):
         print("input read")
 
         pos_sc_file = open(write_to, "w")
-        for idx in range(len(tokens)):
-            if (idx + window_size - 1) < len(tokens):
+        for idx in range(0, len(tokens), window_size):
+            if (idx + window_size) < len(tokens) - 1:
                 curr_tokens = list(itertools.chain.from_iterable(tokens[idx:idx + window_size]))
                 curr_pos_tags = list(itertools.chain.from_iterable(pos_tags[idx:idx + window_size]))
                 tags = np.asarray(curr_pos_tags)
-                if (len(np.where(tags != "O")[0]) != 7):
-                    print(idx)
-                else:
-                    for i, t in enumerate(curr_tokens):
-                        pos_sc_file.write(t + " " + curr_pos_tags[i])
-                        pos_sc_file.write("\n")
-                    if len(curr_pos_tags) > 512:
-                        print(len(curr_pos_tags))
+                for i, t in enumerate(curr_tokens):
+                    pos_sc_file.write(t + " " + curr_pos_tags[i])
+                    pos_sc_file.write("\n")
+                if len(curr_pos_tags) > 512:
+                    print(len(curr_pos_tags))
                 pos_sc_file.write("\n")
+            else:
+                curr_tokens = list(itertools.chain.from_iterable(tokens[idx:]))
+                curr_pos_tags = list(itertools.chain.from_iterable(pos_tags[idx:]))
+                tags = np.asarray(curr_pos_tags)
+                for i, t in enumerate(curr_tokens):
+                    pos_sc_file.write(t + " " + curr_pos_tags[i])
+                    pos_sc_file.write("\n")
+                if len(curr_pos_tags) > 512:
+                    print(len(curr_pos_tags))
+                pos_sc_file.write("\n")
+
         pos_sc_file.close()

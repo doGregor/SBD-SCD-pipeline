@@ -46,13 +46,9 @@ for file in os.listdir("./data"):
                         tokens_element.append(new_token)
                     else:
                         tokens_element.append(token)
-                        if idx == 0:
-                            pos_tags_element.append("NSC")
-                        else:
-                            pos_tags_element.append("O")
+                        pos_tags_element.append("O")
             # consistency check
-            if len(tokens_element) > 0 and (pos_tags_element[0] == "SC" or
-                                            pos_tags_element[0] == "NSC"):
+            if len(tokens_element) > 0:
                 tokens.append(tokens_element)
                 pos_tags.append(pos_tags_element)
             else:
@@ -68,14 +64,10 @@ for file in os.listdir("./data"):
                 curr_tokens = list(itertools.chain.from_iterable(tokens[idx:idx + window_size]))
                 curr_pos_tags = list(itertools.chain.from_iterable(pos_tags[idx:idx + window_size]))
                 tags = np.asarray(curr_pos_tags)
-                # consistency check
-                if (len(np.where(tags != "O")[0]) != 7):
-                    print("Unusable sample at", idx)
-                else:
-                    for i, t in enumerate(curr_tokens):
-                        pos_sc_file.write(t + " " + curr_pos_tags[i])
-                        pos_sc_file.write("\n")
-                    if len(curr_pos_tags) > 512:
-                        print(len(curr_pos_tags))
+                for i, t in enumerate(curr_tokens):
+                    pos_sc_file.write(t + " " + curr_pos_tags[i])
+                    pos_sc_file.write("\n")
+                if len(curr_pos_tags) > 512:
+                    print(len(curr_pos_tags))
                 pos_sc_file.write("\n")
         pos_sc_file.close()

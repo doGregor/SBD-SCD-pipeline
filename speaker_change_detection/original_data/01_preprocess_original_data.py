@@ -1,6 +1,7 @@
 import os
-import re
 
+# specify location of folders that are created by data preprocessing of Meng et al.
+# run this process for each folder: train test val and specify output file name
 directory = "../DATA/val"
 output_name = "org_sc_val.txt"
 

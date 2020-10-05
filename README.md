@@ -3,7 +3,7 @@
  
 ### How to run the pipeline
 1. Install dependencies: Navigate to the projects root directory and run `pip install -r requirements.txt`
-2. Download BERT models `bert_sbd_model` and `bert_sc_model` from --LINK-- (because of size) and move them
+2. Download BERT models `bert_sbd_model` and `bert_sc_model` from [--LINK-- (because of size)] (will be published if paper is accepted) and move them
     in `system_pipeline` folder
 3. Place the file that should be processed as `.txt`-file in the `system_pipeline/input_dir` folder and run
     `python3 pipeline.py`. The output is saved as txt-file in `system_pipeline/output_dir`. Note: you can also
@@ -32,7 +32,7 @@ Data originates from https://www.aclweb.org/anthology/I17-1099/
 For this sepcific dataset: utilized data, optional data preprocessing, detailed evaluation results, config for model training.
 
 `sentence_boundary_detection/evaluation/`
-Script to evaluate predictions in CoNLL-2003 format.
+Script to evaluate predictions in CoNLL-2003 format with our labels.
 
 `sentence_boundary_detection/training/`
 Scripts that are necessary to train a model with a given config and given data (for details see bottom of the page)
@@ -41,11 +41,14 @@ Scripts that are necessary to train a model with a given config and given data (
 `speaker_change_detection/original_data/`
 Results and preprocessing scripts for original data
 
+`speaker_change_detection/training/`
+Scripts, labels.txt and config file that are needed for model training. (for details see bottom of the page)
+
 `speaker_change_detection/unpunctuated_data/`
 Results and preprocessing scripts for unpunctuated data
 
 `speaker_change_detection/evaluate/`
-Scripts to evaluate the resulting .txt files in CoNLL-2003 format.
+Scripts to evaluate the resulting .txt files in CoNLL-2003 format. Can be used if data preprocessing from `original_data` folder has been used.
 
 Since the data used for SCD is too extensive you have to run our python scripts by yourself, to generate the train/dev/test files:
 - download the data from Meng et al. (2017) and run their scripts as explained (https://sites.google.com/site/textscd/)
@@ -57,7 +60,7 @@ Details: https://github.com/huggingface/transformers/tree/master/examples/token-
 
 What you need (at least):
 - config file (.json)
-- folder with 3 data files (.txt); have to be named train.txt, dev.txt, test.txt
+- data folder with 3 data files (.txt); have to be named train.txt, dev.txt, test.txt
 - `run_ner.py` and `utils_ner.py` files
 - file with your labels (.txt)
 - empty output folder

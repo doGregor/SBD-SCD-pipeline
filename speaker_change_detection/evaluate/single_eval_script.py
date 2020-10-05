@@ -2,18 +2,17 @@ from sklearn.metrics import classification_report, accuracy_score
 import pandas as pd
 import numpy as np
 
-true_df = pd.read_csv("../output_all/pos_sc_test.txt", sep=" ", header=None)
+true_df = pd.read_csv("../output/ground_truth_no_sw.txt", sep=" ", header=None)
 true_df.columns = ["token", "pos"]
 true_df.dropna()
-pred_df = pd.read_csv("test_predictions.txt", sep=" ", header=None)
+pred_df = pd.read_csv("test_predictions_no_sw.txt", sep=" ", header=None)
 pred_df.columns = ["token", "pos"]
 pred_df.dropna()
 
 true_col = list(true_df["pos"])
 pred_col = list(pred_df["pos"])
 
-print(len(true_col))
-print(len(pred_col))
+print("consistency", len(true_col), len(pred_col))
 
 true_log = []
 pred_log = []
@@ -25,6 +24,7 @@ for idx, pos_tag in enumerate(true_col):
             pred_log.append(1)
         else:
             pred_log.append(0)
+    # for evaluation modified files with NSC tags that indicate sentence beginning are required
     elif pos_tag == "NSC":
         true_log.append(0)
         if pred_col[idx] == "SC":
@@ -32,8 +32,7 @@ for idx, pos_tag in enumerate(true_col):
         else:
             pred_log.append(0)
 
-print(len(true_log))
-print(len(pred_log))
+print("consistency", len(true_log), len(pred_log))
 
 true_log = np.asarray(true_log)
 pred_log = np.asarray(pred_log)
