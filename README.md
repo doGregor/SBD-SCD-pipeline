@@ -31,6 +31,9 @@ Data originates from https://www.aclweb.org/anthology/I17-1099/
 `sentence_boundary_detection/mixed_data/`
 For this sepcific dataset: utilized data, optional data preprocessing, detailed evaluation results, config for model training.
 
+`sentence_boundary_detection/le_2020_vs_BERT/`
+Results 5-fold cross-validation and training configuration for both models. NOTE: There are samples that are labeled with either no or more than one BOS tags since we use sequence labeling and no class labels. The fraction of those wrongly labeled samples is larger within the results using the apporach of Le (2020) in contrast to those of BERT. Since we cannot assign class labels to those samples, there is only a small difference in the resulting F1 scores.
+
 `sentence_boundary_detection/evaluation/`
 Script to evaluate predictions in CoNLL-2003 format with our labels.
 
