@@ -54,9 +54,9 @@ Since the data used for SCD is too extensive you have to run our python scripts 
 - download the data from Meng et al. (2017) and run their scripts as explained (https://sites.google.com/site/textscd/)
 - run the files in the `speaker_change_detection/original_data/` folder in the order they are numbered (Important: you have to specify your folderlocation within the scripts)
 - `01_preprocess_original_data.py` needs to be run 3 times: Input is in each run one of the folders (train/dev/val) that are resulting from the original Meng et al. data preprocessing
-- `02_data_to_pos_SW.py` and `03_generate_ground_truth_SW.py` only need to be run if you want to try out evaluate the slinding window proceeding (Inputlocation to specify in code is a folder that contains the files produced by `01_preprocess_original_data.py`.
-- The files produced by `04_data_to_pos_NO_SW.py`should be renamed train.txt, dev.txt and test.txt and are used for SCD BERT model training. (Same input to specify in script as previous).
-- `05_generate_ground_truth_NO_SW.py` is used to generate ground truth data that is needed to evaluate the predictions on the test data that are produced through model training (if do_predict is set to True).
+- `02_data_to_pos_SW.py` and `03_generate_ground_truth_SW.py` only need to be run if you want to try out and evaluate the sliding window proceeding (Input location to specify in code is a folder that contains the 3 files produced by `01_preprocess_original_data.py`.
+- The files produced by `04_data_to_pos_NO_SW.py`should be renamed train.txt, dev.txt and test.txt and are used for SCD BERT model training. (Same input to specify in script as with `02_data_to_pos_SW.py`).
+- `05_generate_ground_truth_NO_SW.py` is used to generate ground truth data that is needed to evaluate the predictions on the test data that are produced through model training (if `do_predict` is set to `True`).
 
 ## How to rerun the training:
 Details: https://github.com/huggingface/transformers/tree/master/examples/token-classification
