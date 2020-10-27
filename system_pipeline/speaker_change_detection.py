@@ -14,7 +14,7 @@ CONFIG = {
 
 class SCDetector():
     def __init__(self):
-        self.label_list = ["NSC", "SC", "O"]
+        self.label_list = ["SC", "O"]
         self.model = AutoModelForTokenClassification.from_pretrained(pretrained_model_name_or_path=CONFIG["sc_model"],
                                                                      cache_dir=CONFIG["cache"])
         self.tokenizer = AutoTokenizer.from_pretrained(pretrained_model_name_or_path=CONFIG["sc_model"],
