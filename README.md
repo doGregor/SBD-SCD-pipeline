@@ -3,9 +3,9 @@
  
 ### How to run the pipeline
 1. Install dependencies: Navigate to the projects root directory and run `pip install -r requirements.txt`
-2. Download BERT models `bert_sbd_model` and `bert_sc_model` from [--LINK-- (because of size)] (will be published if paper is accepted) and move them
-    in `system_pipeline` folder
-3. Place the file that should be processed as `.txt`-file in the `system_pipeline/input_dir` folder and run
+2. Train BERT models `bert_sbd_model` and `bert_sc_model` as described below and move them
+    in `system_pipeline` folder (if you want access to the ready-to-use models you are welcome to contact us)
+3. Place the file(s) that should be processed as `.txt`-file(s) in the `system_pipeline/input_dir` folder and run
     `python3 pipeline.py`. The output is saved as txt-file in `system_pipeline/output_dir`. Note: you can also
     process multiple files
  
