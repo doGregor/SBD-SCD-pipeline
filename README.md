@@ -1,6 +1,23 @@
 # Project Information Science 2020
- Sentence Boundary Detection and Speaker Change Detection
- 
+ This work proposes a deep-learning BERT-based approach for Sentence Boundary Detection and Speaker Change Detection
+ in unpunctuated Texts. We can report state-of-the art results for both problems. For more
+information we refer to the related paper (accepted at NLPBT workshop at the Web Conference 2021): https://www.researchgate.net/publication/350888509_Making_Sense_of_Subtitles_Sentence_Boundary_Detection_and_Speaker_Change_Detection_in_Unpunctuated_Texts
+
+If you use code or adapt our approach we kindly ask you to cite our work the following:
+```
+@inproceedings{donabauer_kruschwitz_corney_2021,
+author = {Donabauer, Gregor and Kruschwitz, Udo and Corney, David},
+title = {Making Sense of Subtitles: Sentence Boundary Detection and Speaker Change Detection in Unpunctuated Texts},
+year = {2021},
+booktitle = {Companion Proceedings of the Web Conference 2021 (WWW '21 Companion)},
+publisher = {ACM},
+venue = {Ljubljana, Slovenia},
+doi = {10.1145/3442442.3451894},
+isbn = {978-1-4503-8313-4/21/04},
+address = {New York, NY}
+}
+```
+
 ### How to run the pipeline
 1. Install dependencies: Navigate to the projects root directory and run `pip install -r requirements.txt`
 2. Train BERT models `bert_sbd_model` and `bert_sc_model` as described below and move them
