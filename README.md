@@ -1,9 +1,9 @@
 # Project Information Science 2020
- This work proposes a deep-learning BERT-based approach for Sentence Boundary Detection and Speaker Change Detection
- in unpunctuated Texts. We can report state-of-the art results for both problems. For more
+ This work proposes a deep learning BERT-based approach for sentence boundary detection and speaker change detection
+ in unpunctuated texts. We are able to report state-of-the-art results for solutions to both problems. For more
 information we refer to the related paper (accepted at NLPBT workshop at the Web Conference 2021): https://www.researchgate.net/publication/350888509_Making_Sense_of_Subtitles_Sentence_Boundary_Detection_and_Speaker_Change_Detection_in_Unpunctuated_Texts
 
-If you use code or adapt our approach we kindly ask you to cite our work the following:
+If you use parts of our code or in general adapt our approach we kindly ask you to cite our work as follows:
 ```
 @inproceedings{donabauer_kruschwitz_corney_2021,
 author = {Donabauer, Gregor and Kruschwitz, Udo and Corney, David},
