@@ -79,7 +79,7 @@ Since the data used for SCD is too extensive you have to run our python scripts 
 - `05_generate_ground_truth_NO_SW.py` is used to generate ground truth data that is needed to evaluate the predictions on the test data that are produced through model training (if `do_predict` is set to `True`).
 
 ## How to rerun the training:
-Details: https://github.com/huggingface/transformers/tree/master/examples/token-classification
+Details (legacy): https://github.com/huggingface/transformers/tree/master/examples/legacy/token-classification
 
 What you need (at least):
 - config file (.json)
